@@ -1,0 +1,8 @@
+@startuml GameState
+[*] -> Home 
+Home -> Start
+Start -> Play
+Play -> Result
+Result -> Start
+Result -> Home
+@enduml

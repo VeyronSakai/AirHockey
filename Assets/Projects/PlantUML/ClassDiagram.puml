@@ -1,0 +1,97 @@
+@startuml ClassDiagram
+interface IInput{
+
+}
+
+class InputFromPC<<MonoBehaviord>>
+
+class PlayerMover<<MonoBehavior>>{
+}
+
+PlayerMover -> IInput
+
+InputFromPC ..|> IInput
+
+class GameStateManager{
+    + CurrentGameState
+    + SetGameState()
+}
+
+enum GameState
+
+GameStateManager --> GameState
+
+PlayerMover --> GameStateManager
+
+class StartButton<<MonoBehavior>>
+
+StartButton --> GameStateManager
+
+class StartUIController<<MonoBehavior>>
+
+StartUIController --> GameStateManager
+
+class HomeUIController<<MonoBehavior>>
+
+HomeUIController --> GameStateManager
+
+class CountDownPlayer<<MonoBehavior>>
+
+CountDownPlayer --> GameStateManager
+
+class PackStarter<<MonoBehavior>>
+
+PackStarter -> GameStateManager
+
+class EnemyMover<<MonoBehavior>>
+
+EnemyMover -> GameStateManager
+
+EnemyMover -> PlayerMover
+
+class PlayerWinJudger<<MonoBehavior>>
+PlayerWinJudger --> GameStateManager
+PlayerWinJudger --> VictoryStateManager
+
+class PlayerLoseJudger<<MonoBehavior>>
+PlayerLoseJudger --> GameStateManager
+PlayerLoseJudger --> VictoryStateManager
+
+class VictoryStateManager{
+    + CurrentVictoryState
+    + SetVictoryState()
+}
+
+enum VictroyState
+
+VictoryStateManager -> VictroyState
+
+class WinTextDisplayer<<MonoBehavior>>
+WinTextDisplayer -> VictoryStateManager
+
+class LoseTextDisplayer<<MonoBehavior>>
+LoseTextDisplayer --> VictoryStateManager
+
+
+class ResultUIController<<MonoBehavior>>
+
+ResultUIController -> GameStateManager
+
+class RetryButton<<MonoBehavior>>
+
+RetryButton -> GameStateManager
+
+class InitializeManager{
+    + GoToStartState()
+    + GoToHomeState()
+}
+
+InitializeManager -> GameStateManager
+
+RetryButton -> InitializeManager
+
+class InputFromSmartphone<<MonoBehavior>>
+
+InputFromSmartphone ..|> IInput 
+
+@enduml
