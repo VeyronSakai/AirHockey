@@ -1,3 +1,6 @@
+This is a sample game like Air Hockey.
+
+
 # Used Library
 
 UniRx 6.2.2
